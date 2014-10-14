@@ -25,9 +25,6 @@ public class ActivityMain extends Activity implements View.OnClickListener {
         // XML Bridge
         XMLBrigde();
 
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
     }
 
     public void XMLBrigde() {
