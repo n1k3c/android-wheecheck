@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    
+    <string name="app_name">WheeCheck</string>
+
+    <!-- ActivityMain -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="signUp">Sign Up</string>
+    <string name="logIn">Log In</string>
+
+    <!-- ActivitySignUp -->
+    <string name="activity_signUp_title">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+
+    <!-- ActivityUserHome -->
+    <string name="activity_user_home_title">Hello friend.</string>
+    <!-- ActivityUserClassroom -->
+
+    <!-- ActivityUserStatistics -->
+
+    
+</resources>
