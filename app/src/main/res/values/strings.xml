@@ -17,9 +17,15 @@
 
     <!-- ActivityUserHome -->
     <string name="activity_user_home_title">Hello friend.</string>
+
     <!-- ActivityUserClassroom -->
 
     <!-- ActivityUserStatistics -->
 
-    
+
+    <!-- ActionBar Menu Titles -->
+    <string name="log_out">Log Out</string>
+
+
+
 </resources>

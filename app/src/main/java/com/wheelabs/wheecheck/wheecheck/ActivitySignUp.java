@@ -34,6 +34,7 @@ public class ActivitySignUp extends Activity implements View.OnClickListener {
         Parse.initialize(this, "DS51bI5NWK50Juxj66qNrumszEOdEHmzUopU3mRK", "FCvutL8DQR7DfmdOdVuEgiex9VRtcsWwvcX8QU4e");
         // XML Bridge
         XMLBridge();
+
     }
 
     public void XMLBridge() {
@@ -49,16 +50,18 @@ public class ActivitySignUp extends Activity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bSignUp:
+                // Execute action in new Thread -> ParseSignUp
                 new ParseSignUp().execute();
                 break;
         }
     }
 
 
+    //New Thread for Sign Up action
     class ParseSignUp extends AsyncTask<String, Integer, String> {
 
         ProgressDialog dialog;
-        String result = "error";
+
 
         @Override
         protected void onPreExecute() {
@@ -92,25 +95,20 @@ public class ActivitySignUp extends Activity implements View.OnClickListener {
                 public void done(ParseException e) {
                     if (e == null){
                         dialog.dismiss();
-                        result = "ok";
                     }else {
-                        result = "error";
+
                     }
                 }
             });
-            return result;
+            return null;
         }
 
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if (result.equals("ok")){
-                Toast.makeText(ActivitySignUp.this, "Successful! You can now login.", Toast.LENGTH_LONG).show();
-                Intent sendHome = new Intent(ActivitySignUp.this, ActivityMain.class);
-                startActivity(sendHome);
-            }
 
         }
     }
 
+// End of ActivitySignUp.class
 }
