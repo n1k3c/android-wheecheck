@@ -27,5 +27,14 @@
     <string name="log_out">Log Out</string>
 
 
+    <!-- Menu = DrawerListItems -->
+    <string-array name="menu">
+        <item>Scan QR Code</item>
+        <item>Classroom</item>
+        <item>Statistics</item>
+    </string-array>
+    <string name="drawer_open">Open Navigation Drawer</string>
+    <string name="drawer_close">Close Navigation Drawer</string>
+
 
 </resources>
