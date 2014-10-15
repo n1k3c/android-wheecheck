@@ -1,19 +1,23 @@
 package com.wheelabs.wheecheck.wheecheck;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 import com.parse.Parse;
 import com.parse.ParseUser;
 
@@ -24,8 +28,8 @@ public class ActivityUserHome extends ActionBarActivity implements AdapterView.O
 
     private DrawerLayout drawerLayout;
     private ListView listView;
-    private String[] menuItems;
     private ActionBarDrawerToggle drawerListener;
+    private MenuDrawerAdapter DrawerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,24 +40,19 @@ public class ActivityUserHome extends ActionBarActivity implements AdapterView.O
 
         //XML Bridge
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        DrawerAdapter = new MenuDrawerAdapter(this);
+
         listView = (ListView) findViewById(R.id.drawerList);
-        menuItems = getResources().getStringArray(R.array.menu);
-
-        listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menuItems));
+        listView.setAdapter(DrawerAdapter);
         listView.setOnItemClickListener(this);
-
-
 
         drawerListener = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_navigation_drawer, R.string.drawer_open, R.string.drawer_close);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         drawerLayout.setDrawerListener(drawerListener);
-
-
     }
 
     // DrawerMenu Settings
-
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -62,13 +61,11 @@ public class ActivityUserHome extends ActionBarActivity implements AdapterView.O
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(this, menuItems[position], Toast.LENGTH_SHORT).show();
         selectItem(position);
     }
 
     public void selectItem(int position) {
         listView.setItemChecked(position, true);
-        setTitle(menuItems[position]);
     }
 
     public void setTitle(String title){
@@ -113,7 +110,50 @@ public class ActivityUserHome extends ActionBarActivity implements AdapterView.O
     public void onBackPressed() {
     }
 
-
-
     // End of ActivityUserHome.class
+}
+
+// Custom Adapter to set Custom Row -> drawer_menu_custom_row
+class MenuDrawerAdapter extends BaseAdapter {
+
+    private Context context;
+    String[] menuItems;
+    // Order of images items = string-array items
+    int[] images = {R.drawable.ic_launcher, R.drawable.ic_launcher, R.drawable.ic_launcher};
+
+    public MenuDrawerAdapter(Context context){
+        this.context = context;
+        menuItems = context.getResources().getStringArray(R.array.menu);
+    }
+
+    @Override
+    public int getCount() {
+        return menuItems.length;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return menuItems[position];
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View row = null;
+        if(convertView == null){
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            row = inflater.inflate(R.layout.drawer_menu_custom_row, parent, false);
+        }else {
+            row = convertView;
+        }
+        TextView titleTexView = (TextView) row.findViewById(R.id.tvTitle);
+        ImageView titleImageView = (ImageView) row.findViewById(R.id.ivImage);
+        titleTexView.setText(menuItems[position]);
+        titleImageView.setImageResource(images[position]);
+        return row;
+    }
 }
