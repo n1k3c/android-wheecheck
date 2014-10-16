@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
@@ -15,9 +18,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.parse.Parse;
 import com.parse.ParseUser;
 
@@ -30,6 +36,8 @@ public class ActivityUserHome extends ActionBarActivity implements AdapterView.O
     private ListView listView;
     private ActionBarDrawerToggle drawerListener;
     private MenuDrawerAdapter DrawerAdapter;
+    FragmentManager manager;
+    FragmentTransaction transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +58,14 @@ public class ActivityUserHome extends ActionBarActivity implements AdapterView.O
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         drawerLayout.setDrawerListener(drawerListener);
+
+        // Get FragmentUserHomeContent to main screen
+        FragmentUserHomeContent homeFragment = new FragmentUserHomeContent();
+        manager = getSupportFragmentManager();
+        transaction = manager.beginTransaction();
+        transaction.add(R.id.mainContent, homeFragment, "homeFragment");
+        transaction.commit();
+
     }
 
     // DrawerMenu Settings
@@ -65,7 +81,32 @@ public class ActivityUserHome extends ActionBarActivity implements AdapterView.O
     }
 
     public void selectItem(int position) {
+        Fragment newFragment;
+        transaction = manager.beginTransaction();
+        switch (position){
+            case 0:
+                newFragment =  new FragmentUserHomeContent();
+                transaction.replace(R.id.mainContent, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+            case 1:
+                newFragment = new FragmentUserHomeClassroom();
+                transaction.replace(R.id.mainContent, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+            case 2:
+                newFragment = new FragmentUserStatistics();
+                transaction.replace(R.id.mainContent, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+        }
         listView.setItemChecked(position, true);
+        String[] menuItems = getResources().getStringArray(R.array.menu);
+        setTitle(menuItems[position]);
+        drawerLayout.closeDrawer(listView);
     }
 
     public void setTitle(String title){
