@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -21,11 +22,16 @@
         </activity>
         <activity
             android:name=".ActivitySignUp"
-            android:label="@string/activity_signUp_title"></activity>
+            android:label="@string/activity_signUp_title">
+
+        </activity>
         <activity
             android:name=".ActivityUserHome"
-            android:label="@string/activity_user_home_title">
-        </activity>
+            android:label="@string/activity_user_home_title"></activity>
+        <activity
+            android:name=".ActivityScanner"
+            android:label="@string/activity_user_home_title"></activity>
+
 
     </application>
 
