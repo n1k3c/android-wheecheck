@@ -27,10 +27,12 @@
         </activity>
         <activity
             android:name=".ActivityUserHome"
-            android:label="@string/activity_user_home_title"></activity>
+            android:label="@string/activity_user_home_title">
+        </activity>
         <activity
             android:name=".ActivityScanner"
-            android:label="@string/activity_user_home_title"></activity>
+            android:label="@string/activity_user_home_title">
+        </activity>
 
 
     </application>
