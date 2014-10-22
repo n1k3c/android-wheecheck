@@ -11,16 +11,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.parse.FindCallback;
 import com.parse.GetCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.util.List;
 
 /**
  * Created by nikola on 10/16/14.
@@ -80,6 +76,8 @@ public class FragmentUserHomeContent extends Fragment implements View.OnClickLis
             // Get Username
             ParseUser currentUser = ParseUser.getCurrentUser();
             final String username = (String) currentUser.get("username");
+            final String name = (String) currentUser.get("name");
+            final String surname = (String) currentUser.get("surname");
             final boolean presence = true;
 
             final ParseQuery<ParseObject> query = ParseQuery.getQuery("UserActivity");
@@ -91,6 +89,8 @@ public class FragmentUserHomeContent extends Fragment implements View.OnClickLis
                     if (parseObject == null){
                         ParseObject userActivity = new ParseObject("UserActivity");
                         userActivity.put("username", username);
+                        userActivity.put("name", name);
+                        userActivity.put("surname", surname);
                         userActivity.put("classroom", classroom);
                         userActivity.put("presence", presence);
                         userActivity.saveInBackground();
@@ -105,14 +105,14 @@ public class FragmentUserHomeContent extends Fragment implements View.OnClickLis
                             parseObject.put("presence", presenceNew);
                             parseObject.saveInBackground();
                         }
-
                     }
                 }
             });
 
-
-
             dialog.dismiss();
+
+
+
             return null;
         }
 
