@@ -5,18 +5,14 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,17 +56,18 @@ public class FragmentUserHomeClassroom extends Fragment {
             userList = new ArrayList<UserList>();
             try {
                 // Locate the class table named "UserActivity" in Parse.com
-                ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
-                        "UserActivity");
-                query.whereEqualTo("presence", true);
+                ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("UserActivity");
+                query.whereEqualTo("classroom", true);
                 // Locate the column named "username" in Parse.com and order list
                 // by ascending
-                query.orderByAscending("username");
+                query.orderByAscending("name");
                 ob = query.find();
                 for (ParseObject users : ob) {
                     UserList list = new UserList();
-                    list.setUsername((String) users.get("username"));
-                  //  list.setPresence((String) users.get("presence"));
+                    // Get data from columns
+                    list.setName((String) users.get("name"));
+                    list.setSurname((String) users.get("surname"));
+                    list.setClassroom((String) users.get("classroom"));
                     userList.add(list);
                 }
             } catch (com.parse.ParseException e) {
@@ -82,8 +79,7 @@ public class FragmentUserHomeClassroom extends Fragment {
         @Override
         protected void onPostExecute(Void result) {
             // Pass the results into ListViewAdapter.java
-            adapter = new ListViewAdapter(getActivity(),
-                    userList);
+            adapter = new ListViewAdapter(getActivity(), userList);
             // Binds the Adapter to the ListView
             listview.setAdapter(adapter);
             // Close the progressdialog
@@ -92,23 +88,32 @@ public class FragmentUserHomeClassroom extends Fragment {
     }
 
     public class UserList {
-        private String username;
-        private String presence;
+        private String name;
+        private String surname;
+        private String classroom;
 
-        public String getUsername() {
-            return username;
+        public String getName() {
+            return name;
         }
 
-        public void setUsername(String username) {
-            this.username = username;
+        public void setName(String name) {
+            this.name = name;
         }
 
-        public String getPresence() {
-            return presence;
+        public String getSurname() {
+            return surname;
         }
 
-        public void setPresence(String presence) {
-            this.presence = presence;
+        public void setSurname(String surname) {
+            this.surname = surname;
+        }
+
+        public String getClassroom(){
+            return classroom;
+        }
+
+        public void setClassroom(String classroom){
+            this.classroom = classroom;
         }
     }
 
@@ -120,8 +125,7 @@ public class FragmentUserHomeClassroom extends Fragment {
         private List<UserList> userList = null;
         private ArrayList<UserList> arraylist;
 
-        public ListViewAdapter(Context context,
-                               List<UserList> userList) {
+        public ListViewAdapter(Context context, List<UserList> userList) {
             mContext = context;
             this.userList = userList;
             inflater = LayoutInflater.from(mContext);
@@ -130,8 +134,9 @@ public class FragmentUserHomeClassroom extends Fragment {
         }
 
         public class ViewHolder {
-            TextView username;
-            TextView presence;
+            TextView name;
+            TextView surname;
+            TextView classroom;
         }
 
         @Override
@@ -155,16 +160,17 @@ public class FragmentUserHomeClassroom extends Fragment {
                 holder = new ViewHolder();
                 view = inflater.inflate(R.layout.single_row_user_home_classroom_listview, null);
                 // Locate the TextViews in listview_item.xml
-                holder.username = (TextView) view.findViewById(R.id.tvUsername);
-                holder.presence = (TextView) view.findViewById(R.id.tvPresence);
+                holder.name = (TextView) view.findViewById(R.id.tvName);
+                holder.surname = (TextView) view.findViewById(R.id.tvSurname);
+                holder.classroom = (TextView) view.findViewById(R.id.tvClassroom);
                 view.setTag(holder);
             } else {
                 holder = (ViewHolder) view.getTag();
             }
             // Set the results into TextViews
-            holder.username.setText(userList.get(position).getUsername());
-            holder.presence.setText(userList.get(position).getPresence());
-
+            holder.name.setText(userList.get(position).getName());
+            holder.surname.setText(userList.get(position).getSurname());
+            holder.classroom.setText(userList.get(position).getClassroom());
             return view;
         }
     }
