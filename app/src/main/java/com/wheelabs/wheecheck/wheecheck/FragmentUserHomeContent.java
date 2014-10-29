@@ -75,6 +75,7 @@ public class FragmentUserHomeContent extends Fragment implements View.OnClickLis
             // Get parameter from execute()
             final String classroom = arg0[0];
 
+            // Get current user
             ParseUser currentUser = ParseUser.getCurrentUser();
             final String username = (String) currentUser.get("username");
             final String name = (String) currentUser.get("name");
