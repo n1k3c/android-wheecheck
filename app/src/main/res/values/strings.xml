@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    
+    <string name="app_name">WheeCheck</string>
+
+    <!-- ActivityMain -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="signUp">Sign Up</string>
+    <string name="logIn">Log In</string>
+
+    <!-- ActivitySignUp -->
+    <string name="activity_signUp_title">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+
+    <!-- ActivityUserHome -->
+    <string name="activity_user_home_title">Hello friend.</string>
+
+    <!-- ActivityUserClassroom -->
+
+    <!-- ActivityUserStatistics -->
+
+
+    <!-- ActionBar Menu Titles -->
+    <string name="log_out">Log Out</string>
+
+
+    <!-- Menu = DrawerListItems -->
+    <string-array name="menu">
+        <item>Scan QR Code</item>
+        <item>Classroom</item>
+        <item>Statistics</item>
+    </string-array>
+    <string name="drawer_open">Open Navigation Drawer</string>
+    <string name="drawer_close">Close Navigation Drawer</string>
+
+
+</resources>
