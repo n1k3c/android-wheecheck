@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WheeCheck-3e8b88a9ddce2c9f63fb0bc8e5f7b41877b6c35f.iml" filepath="$PROJECT_DIR$/WheeCheck-3e8b88a9ddce2c9f63fb0bc8e5f7b41877b6c35f.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WheeCheck.iml" filepath="$PROJECT_DIR$/WheeCheck.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
