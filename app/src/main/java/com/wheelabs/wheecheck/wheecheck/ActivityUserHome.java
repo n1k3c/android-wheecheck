@@ -18,11 +18,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.parse.Parse;
 import com.parse.ParseUser;
@@ -97,7 +95,7 @@ public class ActivityUserHome extends ActionBarActivity implements AdapterView.O
                 transaction.commit();
                 break;
             case 2:
-                newFragment = new FragmentUserStatistics();
+                newFragment = new FragmentUserHomeStatistics();
                 transaction.replace(R.id.mainContent, newFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
