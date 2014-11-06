@@ -158,7 +158,7 @@ class MenuDrawerAdapter extends BaseAdapter {
     private Context context;
     String[] menuItems;
     // Order of images items = string-array items
-    int[] images = {R.drawable.ic_launcher, R.drawable.ic_launcher, R.drawable.ic_launcher};
+    int[] images = {R.drawable.ic_scan, R.drawable.ic_classroom, R.drawable.ic_stats};
 
     public MenuDrawerAdapter(Context context){
         this.context = context;

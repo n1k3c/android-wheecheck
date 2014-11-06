@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.parse.GetCallback;
@@ -25,7 +26,7 @@ import java.util.Calendar;
  */
 public class FragmentUserHomeContent extends Fragment implements View.OnClickListener {
 
-    Button bScan;
+    ImageButton bScan;
     TextView tvResult;
     String result;
 
@@ -33,7 +34,7 @@ public class FragmentUserHomeContent extends Fragment implements View.OnClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_home_content, container, false);
         tvResult = (TextView) view.findViewById(R.id.tvResult);
-        bScan = (Button) view.findViewById(R.id.bScan);
+        bScan = (ImageButton) view.findViewById(R.id.bScan);
         bScan.setOnClickListener(this);
         return view;
     }

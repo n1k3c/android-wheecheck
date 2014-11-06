@@ -14,7 +14,7 @@
 
     <ListView
         android:id="@+id/drawerList"
-        android:background="#FF8800"
+        android:background="#e2dfdd"
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:entries="@array/menu"
