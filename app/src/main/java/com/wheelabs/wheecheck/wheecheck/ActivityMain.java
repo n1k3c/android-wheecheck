@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -38,7 +39,7 @@ public class ActivityMain extends Activity implements View.OnClickListener {
                 Intent auh = new Intent(ActivityMain.this, ActivityUserHome.class);
                 startActivity(auh);
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             Toast.makeText(ActivityMain.this, "Please login", Toast.LENGTH_LONG).show();
         }
 
@@ -55,7 +56,7 @@ public class ActivityMain extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.bSignUp:
                 Intent s = new Intent(this, ActivitySignUp.class);
                 startActivity(s);
@@ -67,7 +68,7 @@ public class ActivityMain extends Activity implements View.OnClickListener {
     }
 
     //New Thread for Log In action
-    class ParseLogIn extends AsyncTask<String, Integer, String>{
+    class ParseLogIn extends AsyncTask<String, Integer, String> {
 
         ProgressDialog dialog;
 
@@ -87,27 +88,44 @@ public class ActivityMain extends Activity implements View.OnClickListener {
             email = etEmail.getText().toString();
             password = etPassword.getText().toString();
 
-            ParseUser.logInInBackground(email, password, new LogInCallback() {
-                @Override
-                public void done(ParseUser parseUser, ParseException e) {
-                    if (parseUser != null){
-                        dialog.dismiss();
-                        Intent userHome = new Intent(ActivityMain.this, ActivityUserHome.class);
-                        startActivity(userHome);
-                    }else {
-                        dialog.dismiss();
+            if(email.equals("") || password.equals("")){
+                dialog.dismiss();
+                return "error";
+            } else{
+                ParseUser.logInInBackground(email, password, new LogInCallback() {
+                    @Override
+                    public void done(ParseUser parseUser, ParseException e) {
+                        if (parseUser != null) {
+                            dialog.dismiss();
+                            Intent userHome = new Intent(ActivityMain.this, ActivityUserHome.class);
+                            startActivity(userHome);
+                        } else {
+                            dialog.dismiss();
+                        }
                     }
-                }
-            });
+                });
 
-            return null;
+            }
+
+           return "ok";
         }
 
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-        }
-    }
+        protected void onPostExecute(String e) {
+            if(e.equals("error")){
+                Toast.makeText(ActivityMain.this,"Check your login details.", Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(ActivityMain.this,"Welcome.", Toast.LENGTH_SHORT).show();
 
-// End of ActivityMain.class
+            }
+
+
+        }
+
+
+    }
+    // End of ActivityMain.class
 }
+
+
+
