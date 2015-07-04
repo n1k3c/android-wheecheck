@@ -11,9 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_presence"
-        android:layout_marginTop="7dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="3dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="7dp"/>
 
     <TextView
         android:id="@+id/tvName"
@@ -21,6 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/ivIcon"
         android:text="Name"
+        android:layout_marginTop="11dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="17dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -30,6 +34,8 @@
         android:layout_marginLeft="8dp"
         android:layout_toRightOf="@+id/tvName"
         android:text="Surname"
+        android:textSize="17dp"
+        android:layout_marginTop="11dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -38,8 +44,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvName"
         android:layout_toRightOf="@+id/ivIcon"
+        android:layout_marginLeft="10dp"
         android:text="Classroom"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="14dp" />
+        android:textSize="14dp"
+        android:textColor="#aeaeae"/>
 
 </RelativeLayout>

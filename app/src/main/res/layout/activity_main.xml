@@ -40,6 +40,8 @@
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="70dp"
+        android:background="#00baff"
+        android:textColor="#FFF"
         android:text="@string/signUp" />
 
     <Button
@@ -48,6 +50,8 @@
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
+        android:textColor="#FFF"
+        android:background="#009cff"
         android:text="@string/logIn" />
 
 

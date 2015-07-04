@@ -10,16 +10,17 @@
         android:id="@+id/ivImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp" />
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="9dp"/>
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:textSize="16dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="18dp"
+        android:textSize="19dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>

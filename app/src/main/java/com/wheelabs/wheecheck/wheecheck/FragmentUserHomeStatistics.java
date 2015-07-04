@@ -66,7 +66,7 @@ public class FragmentUserHomeStatistics extends Fragment {
                 query.whereEqualTo("username", username);
                 // Locate the column named "username" in Parse.com and order list
                 // by ascending
-                query.orderByAscending("date");
+                query.orderByDescending("createdAt");
                 ob = query.find();
                 for (ParseObject users : ob) {
                     UserList list = new UserList();
